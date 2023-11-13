@@ -4,9 +4,10 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt requirements.txt
+COPY . .
+
+RUN pip install "git+https://github.com/MO-RISE/keelson.git@0.1.0-pre.12#subdirectory=brefv/python"
+
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-COPY --chmod=555 ./bin/* /usr/local/bin/
-
-ENTRYPOINT ["/bin/bash", "-l", "-c"]
+CMD [ python3 ./src/main.py -o 10.10.7.63 -r test -e ted -i os2 -s 0  -f fid ]

@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+
+  lidar-main:
+    build: .
+    restart: unless-stopped
+    network_mode: "host"  
+    environment:
+      - MQTT_BROKER_HOST=localhost
